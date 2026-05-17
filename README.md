@@ -96,9 +96,23 @@ ALLOWED_ORIGINS=http://localhost:8000,http://127.0.0.1:8000
 
 ## 🔐 Credenciales de Prueba
 
-Para explorar las funcionalidades de la plataforma sin necesidad de registrarse, puede utilizar la siguiente cuenta de prueba:
+> [!NOTE]
+> La base de datos se genera vacía en cada instalación nueva. Antes de usar las credenciales de prueba, es necesario registrar la cuenta una vez desde el formulario de registro del sitio.
 
-*   **Usuario:** `PokemonUser@pokemon.com`
+### Cuenta de prueba recomendada
+
+**Paso 1 — Registrar la cuenta** (solo la primera vez):
+
+Accede al formulario de registro en el sitio y crea una cuenta con estos datos:
+
+*   **Nombre de usuario:** `PokemonUser`
+*   **Correo:** `PokemonUser@pokemon.com`
+*   **Contraseña:** `pokeuser!!`
+*   **Fecha de nacimiento:** cualquier fecha válida
+
+**Paso 2 — Iniciar sesión** con las mismas credenciales:
+
+*   **Usuario / Correo:** `PokemonUser@pokemon.com`
 *   **Contraseña:** `pokeuser!!`
 
 ### Acceso Administrativo
