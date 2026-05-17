@@ -142,3 +142,69 @@ class LeaderboardOut(BaseModel):
     victories: int
     
     model_config = {"from_attributes": True}
+
+
+# ──────────────────────────────────────────
+# Schemas para el Asistente IA (PokéAssist)
+# ──────────────────────────────────────────
+
+class ChatTurn(BaseModel):
+    """
+    Un turno de conversación (pregunta o respuesta).
+    El rol solo puede ser 'user' o 'assistant' — nunca 'system'
+    para prevenir prompt injection desde el cliente.
+    """
+    role: str = Field(..., pattern="^(user|assistant)$")
+    content: str = Field(..., min_length=1, max_length=500)
+
+
+class ChatRequest(BaseModel):
+    """
+    Petición de chat que el frontend envía al backend.
+    - message: el mensaje actual del usuario (max 500 chars)
+    - history: los turnos anteriores de la conversación (max 10 turnos = 20 mensajes)
+    - user_id: opcional, para asociar el log al usuario registrado
+    """
+    message: str = Field(
+        ...,
+        min_length=1,
+        max_length=500,
+        description="Mensaje del usuario. Máximo 500 caracteres."
+    )
+    history: List[ChatTurn] = Field(
+        default_factory=list,
+        max_length=20,
+        description="Historial previo de la conversación. Máximo 20 turnos."
+    )
+    user_id: Optional[int] = Field(None, description="ID del usuario (opcional).")
+
+    @field_validator("message")
+    @classmethod
+    def sanitize_message(cls, v: str) -> str:
+        """
+        Limpia el mensaje: elimina espacios extremos y
+        caracteres de control que podrían usarse en prompt injection.
+        """
+        v = v.strip()
+        # Eliminar caracteres de control (excepto salto de línea normal)
+        v = "".join(ch for ch in v if ch >= " " or ch == "\n")
+        if not v:
+            raise ValueError("El mensaje no puede estar vacío.")
+        return v
+
+
+class ChatResponse(BaseModel):
+    """Respuesta del asistente IA."""
+    reply: str
+    messages_used: int = Field(description="Cuántos mensajes del historial se enviaron al modelo.")
+
+
+class ChatLogOut(BaseModel):
+    """Schema de salida para el log de chat (uso del panel admin)."""
+    id: int
+    user_id: Optional[int]
+    question: str
+    answer: str
+    created_at: str
+
+    model_config = {"from_attributes": True}

@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer, String, Date, UniqueConstraint, ForeignKey, Boolean
+from sqlalchemy import Column, Integer, String, Date, UniqueConstraint, ForeignKey, Boolean, DateTime, Text
 from sqlalchemy.orm import relationship
+from sqlalchemy.sql import func
 from database import Base
 
 
@@ -56,3 +57,22 @@ class Favorite(Base):
     __table_args__ = (
         UniqueConstraint("user_id", "card_id", name="uq_user_card_favorite"),
     )
+
+
+class ChatLog(Base):
+    """
+    Registro persistente de conversaciones con el asistente IA (PokéAssist).
+    Permite al panel de administración monitorear el uso del chat.
+    - user_id es opcional: funciona tanto para usuarios registrados como anónimos.
+    - question / answer guardan el par de mensajes para análisis posterior.
+    """
+    __tablename__ = "chat_logs"
+
+    id         = Column(Integer, primary_key=True, index=True)
+    user_id    = Column(Integer, ForeignKey("users.id", ondelete="SET NULL"), nullable=True)
+    question   = Column(Text, nullable=False)
+    answer     = Column(Text, nullable=False)
+    created_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False)
+
+    def __repr__(self) -> str:
+        return f"<ChatLog id={self.id} user_id={self.user_id}>"
