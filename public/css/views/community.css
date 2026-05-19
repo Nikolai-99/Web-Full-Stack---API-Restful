@@ -1,0 +1,200 @@
+/* ================================================================================
+   SECCIÓN COMUNIDAD DE ENTRENADORES
+================================================================================ */
+.community-preview {
+  position: fixed;
+  bottom: 5vh;
+  right: 2vw;
+  z-index: 5;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  backdrop-filter: none !important;
+}
+
+body:has(input[name="app-state"]:not(#state-home):checked) .community-preview {
+  display: none !important;
+}
+
+.community-container {
+  background: rgba(27, 23, 52, 0.88);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 203, 5, 0.25);
+  border-radius: 14px;
+  padding: 1rem 1.2rem;
+  max-width: 280px;
+  pointer-events: auto;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.community-container h3 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ffcb05;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(255, 203, 5, 0.2);
+  padding-bottom: 0.4rem;
+}
+
+.loading-text {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+.community-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+}
+
+.community-table thead th {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 600;
+  padding: 4px 6px;
+  text-align: left;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.community-table tbody tr {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  transition: background 0.2s ease;
+}
+
+.community-table tbody tr:hover {
+  background: rgba(255, 203, 5, 0.07);
+}
+
+.community-table tbody td {
+  padding: 5px 6px;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.community-table tbody td strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Botón hamburguesa para la comunidad - oculto en desktop */
+.community-toggle-checkbox,
+.btn-community-toggle {
+  display: none;
+}
+
+/* ================================================================================
+WIDGET COMUNIDAD (VERSIÓN COMPACTA INFERIOR IZQUIERDA)
+================================================================================ */
+@keyframes fadeInCommunityOnScroll {
+
+  0%,
+  80% {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  95%,
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    visibility: visible;
+  }
+}
+
+.community-preview {
+  position: fixed;
+  bottom: 100px;
+  /* Más arriba para evitar el footer */
+  left: 25px;
+  width: 280px;
+  background: rgba(27, 23, 52, 0.85);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 203, 5, 0.4);
+  padding: 1rem;
+  border-radius: 12px;
+  z-index: 100;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+
+  /* Animación sincronizada con el botón de sobres */
+  animation: fadeInCommunityOnScroll linear forwards;
+  animation-timeline: scroll(root);
+
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Ocultar widget si NO estamos en el inicio (Home) */
+body:has(input[name="app-state"]:not(#state-home):checked) .community-preview {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateY(30px) !important;
+  animation: none;
+  /* Desactivar scroll-timeline en otras vistas */
+}
+
+.community-container h3 {
+  color: var(--color-primary);
+  text-align: left;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.85rem;
+  border-bottom: 1px solid rgba(255, 203, 5, 0.3);
+  padding-bottom: 5px;
+}
+
+.community-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--color-white);
+  font-size: 0.75rem;
+}
+
+.community-table th,
+.community-table td {
+  padding: 6px 4px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.community-table th {
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 0.65rem;
+}
+
+/* Ocultar email en la versión compacta para ahorrar espacio */
+.community-table th:nth-child(3),
+.community-table td:nth-child(3) {
+  display: none;
+}
+
+.community-table tr:hover {
+  background: rgba(255, 203, 5, 0.1);
+}
+
+.loading-text {
+  font-size: 0.7rem;
+  color: var(--color-gray-light);
+}
+
+/* Ajuste para móviles: más pequeño o centrado si es necesario */
+@media (max-width: 480px) {
+  .community-preview {
+    width: 220px;
+    bottom: 15px;
+    left: 15px;
+    padding: 0.75rem;
+  }
+}
+

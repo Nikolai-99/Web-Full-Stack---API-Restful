@@ -504,7 +504,7 @@ async def ai_chat(payload: ChatRequest, db: Session = Depends(get_db)):
         },
         "contents": contents,
         "generationConfig": {
-            "maxOutputTokens": 512,
+            "maxOutputTokens": 1024,
             "temperature": 0.7,
         }
     }
@@ -529,10 +529,20 @@ async def ai_chat(payload: ChatRequest, db: Session = Depends(get_db)):
         )
 
     except httpx.HTTPStatusError as exc:
-        # Error de la API de Gemini (ej: clave inválida, cuota superada)
+        # Error de la API de Gemini (ej: clave inválida, cuota superada, sobrecarga)
+        error_detail = f"Error al comunicarse con el servicio de IA: {exc.response.status_code}"
+        try:
+            error_data = exc.response.json()
+            if "error" in error_data and "message" in error_data["error"]:
+                error_detail = f"Gemini API ({exc.response.status_code}): {error_data['error']['message']}"
+        except Exception:
+            pass
+
+        # Si es un 503 de Gemini (sobrecarga), devolvemos 503. Si no, 502 Bad Gateway.
+        final_status = status.HTTP_503_SERVICE_UNAVAILABLE if exc.response.status_code == 503 else status.HTTP_502_BAD_GATEWAY
         raise HTTPException(
-            status_code=status.HTTP_502_BAD_GATEWAY,
-            detail=f"Error al comunicarse con el servicio de IA: {exc.response.status_code}"
+            status_code=final_status,
+            detail=error_detail
         )
     except httpx.RequestError:
         raise HTTPException(

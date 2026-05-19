@@ -35,6 +35,9 @@ export function initPokeAssist() {
 
   if (!fab || !panel) return;
 
+  // ─── Botón lateral (móvil/tablet) ─────────
+  const sidebarBtn = document.querySelector(".btn-pokeassist-toggle");
+
   // ─── Estado del chat ───────────────────────
   const MAX_MESSAGES = 20;
   let messageCount = 0;
@@ -50,7 +53,8 @@ export function initPokeAssist() {
     panel.setAttribute("aria-hidden", "false");
     fab.classList.add("is-open");
     fab.setAttribute("aria-expanded", "true");
-    if (window.innerWidth <= 480) {
+    sidebarBtn?.setAttribute("aria-expanded", "true");
+    if (window.innerWidth <= 480 || (sidebarBtn && window.getComputedStyle(sidebarBtn).display !== "none")) {
       overlay.classList.add("is-visible");
       document.body.style.overflow = "hidden";
     }
@@ -64,11 +68,13 @@ export function initPokeAssist() {
     panel.setAttribute("aria-hidden", "true");
     fab.classList.remove("is-open");
     fab.setAttribute("aria-expanded", "false");
+    sidebarBtn?.setAttribute("aria-expanded", "false");
     overlay.classList.remove("is-visible");
     document.body.style.overflow = "";
   }
 
   fab.addEventListener("click", () => isOpen ? closePanel() : openPanel());
+  sidebarBtn?.addEventListener("click", () => isOpen ? closePanel() : openPanel());
   closeBtn?.addEventListener("click", closePanel);
   overlay?.addEventListener("click", closePanel);
 
@@ -114,6 +120,11 @@ export function initPokeAssist() {
     }
   }
 
+  // ─── Configuración de marked (una sola vez) ────
+  if (window.marked) {
+    window.marked.setOptions({ breaks: true });
+  }
+
   // ─── Renderizar burbuja de mensaje ─────────
   function appendBubble(role, text) {
     const bubble = document.createElement("div");
@@ -129,12 +140,14 @@ export function initPokeAssist() {
     const content = document.createElement("div");
     content.className = "bubble-content";
 
-    const paragraphs = escapeHtml(text)
-      .split("\n")
-      .filter(p => p.trim())
-      .map(p => `<p>${p}</p>`)
-      .join("");
-    content.innerHTML = paragraphs || `<p>${escapeHtml(text)}</p>`;
+    if (role === "assistant" && window.marked && window.DOMPurify) {
+      // Respuestas del asistente: Markdown → HTML → sanitizado XSS
+      const rawHtml = window.marked.parse(text);
+      content.innerHTML = window.DOMPurify.sanitize(rawHtml);
+    } else {
+      // Mensajes del usuario: texto plano escapado (sin Markdown)
+      content.innerHTML = `<p>${escapeHtml(text)}</p>`;
+    }
 
     if (role === "assistant") {
       bubble.appendChild(avatar);
@@ -148,6 +161,7 @@ export function initPokeAssist() {
     scrollToBottom();
     return bubble;
   }
+
 
   function scrollToBottom() {
     if (messages) {
@@ -208,7 +222,18 @@ export function initPokeAssist() {
         appendBubble("assistant", reply);
       } else {
         const err = await response.json().catch(() => ({}));
-        const errorMsg = err.detail || "Ocurrió un error al contactar al asistente.";
+        // err.detail puede ser string (errores de API) o array de objetos (errores 422 de Pydantic)
+        let errorMsg = "Ocurrió un error al contactar al asistente.";
+        if (err.detail) {
+          if (typeof err.detail === "string") {
+            errorMsg = err.detail;
+          } else if (Array.isArray(err.detail)) {
+            // Errores de validación Pydantic: [{loc, msg, type}, ...]
+            errorMsg = err.detail.map(e => e.msg || JSON.stringify(e)).join(". ");
+          } else {
+            errorMsg = JSON.stringify(err.detail);
+          }
+        }
         appendBubble("assistant", `⚠️ ${errorMsg}`);
       }
 

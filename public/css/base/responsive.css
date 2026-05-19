@@ -1,0 +1,808 @@
+/* ================================================================================
+MEDIA QUERIES - RESPONSIVE DESIGN
+================================================================================ */
+
+@media (max-width: 900px) {
+  .official-side-nav {
+    transform: scale(0.7);
+    transform-origin: left top;
+    top: 120px;
+    /* Bajado para evitar solape */
+  }
+
+  .hero-left-col {
+    margin-top: 10vh;
+  }
+
+  .packs-grid {
+    max-width: 720px;
+    gap: 12px;
+  }
+
+  .pack {
+    max-width: 176px;
+  }
+
+  .cards-grid {
+    max-width: 440px;
+    gap: 12px;
+  }
+
+  .card {
+    max-width: 160px;
+  }
+
+  body:has(#card-1-selected:checked) .slot-1 .card,
+  body:has(#card-2-selected:checked) .slot-2 .card,
+  body:has(#card-3-selected:checked) .slot-3 .card,
+  body:has(#card-4-selected:checked) .slot-4 .card {
+    left: 50vw;
+    top: 42vh;
+    /* Aumentamos la escala de 0.75 a 1.1 para que la carta se vea mucho más grande */
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  .card-details {
+    left: 50vw;
+    top: auto;
+    bottom: 8vh;
+    transform: translateX(-50%);
+    max-width: 85%;
+    padding: 1.2rem;
+  }
+
+  body:has(#card-1-selected:checked) .slot-1 .card-details,
+  body:has(#card-2-selected:checked) .slot-2 .card-details,
+  body:has(#card-3-selected:checked) .slot-3 .card-details,
+  body:has(#card-4-selected:checked) .slot-4 .card-details {
+    transform: translateX(-50%);
+  }
+
+  .card-details h2 {
+    font-size: 1.2rem;
+  }
+
+  .card-details p {
+    font-size: 0.95rem;
+  }
+
+  .hero-right-col {
+    display: none !important;
+  }
+
+  .view-news {
+    align-items: flex-start;
+    overflow-y: auto;
+    padding-top: 40px;
+  }
+
+  .news-content-wrapper {
+    margin: auto;
+    padding-bottom: 80px;
+  }
+
+  .news-grid {
+    display: flex;
+    flex-direction: column;
+    max-width: 540px;
+    width: 90%;
+    gap: 25px;
+  }
+
+  .news-item {
+    width: 100%;
+    height: auto;
+  }
+
+  .item-left,
+  .item-right-top,
+  .item-right-bottom {
+    grid-column: auto;
+    grid-row: auto;
+    aspect-ratio: auto;
+  }
+
+  .btn-close-news {
+    margin-top: 25px;
+  }
+
+  .login-content-wrapper {
+    width: 85%;
+    min-width: unset;
+    padding: 2rem;
+    max-height: 95vh;
+  }
+
+  /* Estilos del Menú Hamburguesa para móviles */
+  .official-top-nav {
+    justify-content: flex-end;
+    height: 60px;
+    overflow: visible;
+  }
+
+  .menu-toggle-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    margin-right: 20px;
+    z-index: 1001;
+  }
+
+  .menu-toggle-label span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-dark);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    transform-origin: left center;
+  }
+
+  /* Animación del Hamburguesa a Cruz */
+  .menu-toggle-checkbox:checked~.menu-toggle-label span:nth-child(1) {
+    transform: rotate(45deg) translate(-2px, -3px);
+  }
+
+  .menu-toggle-checkbox:checked~.menu-toggle-label span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle-checkbox:checked~.menu-toggle-label span:nth-child(3) {
+    transform: rotate(-45deg) translate(-2px, 3px);
+  }
+
+  body:has(.menu-toggle-checkbox:checked) .arrow-left-container {
+    display: none !important;
+  }
+
+  .main-menu {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    background-color: var(--color-white);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    padding: 0;
+  }
+
+  .menu-toggle-checkbox:checked~.main-menu {
+    max-height: 400px;
+  }
+
+  .main-menu li {
+    width: 100%;
+  }
+
+  .main-menu li:first-child {
+    border-left: none;
+  }
+
+  .menu-item {
+    width: 100%;
+    height: auto;
+    padding: 15px 20px;
+    border-right: none;
+    border-bottom: 1px solid var(--color-gray-light);
+    justify-content: flex-start;
+    font-size: 1rem;
+    white-space: normal;
+  }
+
+  /* === COMUNIDAD RESPONSIVA === */
+  .community-preview {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1001;
+    /* Por encima de la navegación lateral */
+    width: 100%;
+    pointer-events: none;
+    height: auto;
+  }
+
+  .community-container {
+    max-width: 100%;
+    border-radius: 20px 20px 0 0;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: auto;
+    border: none !important;
+    background: transparent !important;
+    visibility: hidden !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    opacity: 0 !important;
+    display: block !important;
+    transform: translateY(100%);
+  }
+
+  body:has(#community-toggle:checked) .community-container {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 1.5rem 1.2rem;
+    background: rgba(13, 10, 31, 0.98) !important;
+    border-top: 2px solid rgba(112, 209, 244, 0.5) !important;
+    /* Usando el nuevo color celeste */
+    visibility: visible !important;
+    box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.9) !important;
+    backdrop-filter: blur(25px) !important;
+    opacity: 1 !important;
+    transform: translateY(0);
+  }
+
+  /* Botón hamburguesa de comunidad visible en móvil */
+  .community-toggle-checkbox {
+    display: none;
+  }
+
+  .btn-community-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background-color: #a5e6ff;
+    /* Celeste muy claro */
+    color: #1b1734;
+    cursor: pointer;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+    opacity: 0;
+    animation: fadeArrowOnScroll linear forwards;
+    animation-timeline: scroll(root);
+  }
+
+  .btn-community-toggle:hover {
+    background-color: #70d1f4;
+    color: white;
+  }
+
+  .btn-community-toggle svg {
+    transition: transform 0.3s ease;
+  }
+
+  /* Animación icono → Escala */
+  body:has(#community-toggle:checked) .btn-community-toggle svg {
+    transform: scale(0.8);
+  }
+
+  /* === POKEDEX RESPONSIVA === */
+  .pokedex-header h2 {
+    font-size: 1rem !important;
+    margin-bottom: 0.3rem;
+    letter-spacing: 1px;
+  }
+
+  .pokedex-card {
+    flex: 0 0 180px;
+    padding: 12px;
+    border-radius: 16px;
+  }
+
+  .pk-img-container {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+  }
+
+  .pk-number {
+    font-size: 0.7rem;
+  }
+
+  .pk-name {
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+
+  .pk-type {
+    font-size: 0.7rem;
+    padding: 2px 10px;
+    margin-bottom: 8px;
+  }
+
+  .pk-lore {
+    font-size: 0.65rem;
+    line-height: 1.2;
+  }
+
+  .carousel-nav {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-logo {
+    max-width: 275px;
+  }
+
+  .ver-sobres-img {
+    max-width: 200px;
+  }
+
+  .view-packs,
+  .view-cards {
+    align-items: center !important;
+    overflow: hidden !important;
+    padding-top: 0;
+  }
+
+  .cards-display-background {
+    position: fixed !important;
+  }
+
+  .packs-grid {
+    grid-template-columns: 1fr;
+    height: 100vh;
+    width: 100vw;
+    max-width: 100vw;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    gap: 15vh;
+    padding-top: 25vh;
+    padding-bottom: 25vh;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+    height: 100vh;
+    width: 100vw;
+    max-width: 100vw;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    gap: 15vh;
+    padding-top: 25vh;
+    padding-bottom: 25vh;
+  }
+
+  .pack-slot,
+  .card-slot {
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+  .pack,
+  .card {
+    max-width: 250px;
+    margin: 0 auto;
+  }
+
+  .nav-logo-link {
+    left: 10px;
+  }
+
+  .nav-logo {
+    height: 30px;
+  }
+
+
+
+  .official-side-nav {
+    display: flex;
+    transform: scale(0.8);
+    transform-origin: left top;
+    top: 120px;
+    /* Bajado para iPhone SE y similares */
+  }
+
+  .footer-modal-box {
+    padding: 1.5rem;
+    max-width: 85%;
+  }
+
+  .footer-modal-box h2 {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .footer-grid-content {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .footer-grid-content h3 {
+    font-size: 0.8rem;
+  }
+
+  .footer-grid-content p {
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+
+  .close-details-btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.7rem;
+  }
+
+  .main-footer {
+    padding: 0.4rem 1rem;
+  }
+
+  .copyright,
+  .footer-link {
+    font-size: 0.6rem;
+  }
+
+  .close-btn {
+    top: 100px;
+    right: 15px;
+    z-index: 1100;
+    padding: 8px 16px;
+    font-size: 0.8rem;
+    background: rgba(27, 23, 52, 0.9);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .view-news {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    /* Usar vw para ignorar anchos de contenedores padres */
+    height: 100vh;
+    z-index: 2000;
+    /* Por encima de la navegación horizontal */
+    transform: translateX(100%);
+    visibility: hidden;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+
+
+  .nav-logo-link {
+    left: 10px;
+  }
+
+  .nav-logo {
+    height: 35px;
+  }
+
+  /* Ajuste del logo */
+
+
+
+}
+
+@media (max-width: 600px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.25rem;
+  }
+
+  .copyright {
+    order: 2;
+  }
+
+  .footer-nav {
+    order: 1;
+    justify-content: center;
+    gap: 0.8rem;
+  }
+
+
+}
+
+@media (max-width: 480px) {
+  .hero-logo {
+    max-width: 225px;
+  }
+
+  .ver-sobres-img {
+    max-width: 160px;
+  }
+
+  .close-btn {
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .official-side-nav {
+    transform: scale(0.8);
+  }
+
+  .nav-logo-link {
+    left: 4px;
+  }
+
+  .nav-logo {
+    height: 22px;
+  }
+
+
+
+  body:has(#card-1-selected:checked) .slot-1 .card,
+  body:has(#card-2-selected:checked) .slot-2 .card,
+  body:has(#card-3-selected:checked) .slot-3 .card,
+  body:has(#card-4-selected:checked) .slot-4 .card {
+    top: 35vh;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+
+  .card-details {
+    padding: 1rem;
+    max-width: 95%;
+    z-index: 100;
+  }
+
+  body:has(#card-1-selected:checked) .slot-1 .card-details,
+  body:has(#card-2-selected:checked) .slot-2 .card-details,
+  body:has(#card-3-selected:checked) .slot-3 .card-details,
+  body:has(#card-4-selected:checked) .slot-4 .card-details {
+    top: auto;
+    bottom: 12vh;
+    transform: translateX(-50%);
+  }
+
+  .card-details h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-details p {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+
+  .hero-content-wrapper {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 16vh;
+  }
+
+  .hero-left-col {
+    gap: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-logo-caja {
+    max-width: 180px;
+  }
+
+  .hero-badge {
+    max-width: 110px;
+    margin-top: -10px;
+  }
+
+  .nav-logo-link {
+    left: 8px;
+  }
+
+  .nav-logo {
+    height: 28px;
+  }
+
+
+}
+
+@media (max-width: 350px) {
+  .news-grid {
+    max-width: 270px;
+    /* Mantenemos el 30% de 900px */
+    gap: 5px;
+  }
+}
+
+/* ================================================================================
+AJUSTES DE CARTAS PARA MÓVILES
+================================================================================ 
+*/
+
+/* ================================================================================
+AJUSTES ESPECÍFICOS PARA IPHONE SE Y PANTALLAS MUY PEQUEÑAS
+================================================================================ 
+*/
+@media (max-width: 380px) {
+  .card-details {
+    padding: 0.6rem;
+  }
+
+  .card-details h2 {
+    font-size: 0.72rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .card-details p {
+    font-size: 0.57rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+  }
+}
+
+
+/* ================================================================================
+   AJUSTES PARA ORIENTACIÓN HORIZONTAL (LANDSCAPE)
+================================================================================ */
+@media (max-width: 950px) and (orientation: landscape) {
+  .hero-logo {
+    max-width: 180px;
+  }
+
+  .hero-logo-wrapper {
+    top: 10vh;
+  }
+
+  .official-side-nav {
+    transform: scale(0.6);
+    top: 75px;
+  }
+
+  .ver-sobres-img {
+    max-width: 140px;
+  }
+
+  .arrow-down-container {
+    bottom: 5vh;
+  }
+
+  .pokedex-card {
+    flex: 0 0 160px;
+    padding: 10px;
+  }
+
+  .pk-img-container {
+    width: 80px;
+    height: 80px;
+  }
+
+  .pk-name {
+    font-size: 0.9rem;
+  }
+
+  .pk-lore {
+    display: none;
+  }
+
+  /* Botón Volver siempre visible en landscape */
+  .close-btn {
+    position: fixed !important;
+    top: 10px !important;
+    right: 12px !important;
+    padding: 6px 14px !important;
+    font-size: 0.72rem !important;
+    z-index: 1200 !important;
+  }
+
+  /* ===================================================
+     VISTA DE SOBRES EN LANDSCAPE
+     Los sobres son muy altos (780×1429): se limitan por
+     altura en vez de ancho para que quepan en pantalla corta.
+  ==================================================== */
+  .view-packs,
+  .view-cards {
+    overflow: hidden !important;
+    align-items: center !important;
+    padding-top: 0 !important;
+  }
+
+  .packs-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 100vh !important;
+    padding: 10px 70px !important;
+    /* margen lateral para el botón Volver */
+    gap: 20px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    list-style: none !important;
+  }
+
+  /* Sobre: tamaño controlado por altura; ancho sale del aspect-ratio */
+  .pack {
+    max-width: none !important;
+    height: 72vh !important;
+    width: auto !important;
+    aspect-ratio: 780 / 1429 !important;
+    flex-shrink: 0 !important;
+    scroll-snap-align: center !important;
+  }
+
+  /* ===================================================
+     VISTA DE CARTAS EN LANDSCAPE
+  ==================================================== */
+  .cards-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 100vh !important;
+    padding: 10px 70px !important;
+    gap: 15px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    list-style: none !important;
+  }
+
+  /* Carta: tamaño controlado por altura */
+  .card {
+    max-width: none !important;
+    height: 72vh !important;
+    width: auto !important;
+    aspect-ratio: 780 / 1100 !important;
+    flex-shrink: 0 !important;
+    scroll-snap-align: center !important;
+  }
+
+  /* ===================================================
+     CARTA SELECCIONADA EN LANDSCAPE
+     Layout lado a lado: carta izquierda, detalles derecha
+  ==================================================== */
+  body:has(#card-1-selected:checked) .slot-1 .card,
+  body:has(#card-2-selected:checked) .slot-2 .card,
+  body:has(#card-3-selected:checked) .slot-3 .card,
+  body:has(#card-4-selected:checked) .slot-4 .card {
+    position: fixed !important;
+    top: 50% !important;
+    left: 28% !important;
+    transform: translate(-50%, -50%) !important;
+    height: 82vh !important;
+    width: auto !important;
+    max-width: none !important;
+  }
+
+  /* Panel de detalles a la derecha */
+  .card-details {
+    position: fixed !important;
+    top: 50% !important;
+    left: auto !important;
+    bottom: auto !important;
+    right: 2vw !important;
+    transform: translateY(-50%) translateX(60px) !important;
+    width: 42vw !important;
+    max-width: 340px !important;
+    max-height: 88vh !important;
+    padding: 1rem 1.2rem !important;
+    overflow-y: auto !important;
+  }
+
+  body:has(#card-1-selected:checked) .slot-1 .card-details,
+  body:has(#card-2-selected:checked) .slot-2 .card-details,
+  body:has(#card-3-selected:checked) .slot-3 .card-details,
+  body:has(#card-4-selected:checked) .slot-4 .card-details {
+    transform: translateY(-50%) !important;
+  }
+
+  .card-details h2 {
+    font-size: 0.85rem !important;
+    margin-bottom: 0.4rem !important;
+  }
+
+  .card-details p {
+    font-size: 0.72rem !important;
+    margin-bottom: 0.5rem !important;
+    line-height: 1.4 !important;
+  }
+
+  .close-details-btn {
+    padding: 0.4rem 0.8rem !important;
+    font-size: 0.7rem !important;
+  }
+}
+

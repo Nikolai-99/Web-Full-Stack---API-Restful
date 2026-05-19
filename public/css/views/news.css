@@ -1,0 +1,202 @@
+/* ================================================================================
+BOTÓN PARA ABRIR NOTICIAS (FLECHA IZQUIERDA)
+================================================================================ */
+.arrow-left-container {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  z-index: 1001;
+  /* Justo por encima de la barra de navegación */
+}
+
+/* ================================================================================
+BOTÓN PARA ABRIR NOTICIAS (FLECHA MIRANDO AL BORDE)
+================================================================================ */
+.arrow-action-wrapper-left {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  animation: bounceArrowRight 2s infinite ease-in-out;
+  /* Cambiamos el nombre de la animación */
+  padding: 20px;
+}
+
+/* Clase para ocultar texto visualmente pero mantenerlo accesible */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+  color: #000 !important;
+  /* Requerimiento: Texto de color negro para el fondo elegido */
+}
+
+/* Estilos globales de foco */
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Ajustes específicos si el outline rompe la estética de las cartas */
+.card-label:focus-visible .card,
+.pack:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 10px;
+}
+
+/* Ahora rebota hacia la derecha (hacia el borde) en lugar de la izquierda */
+@keyframes bounceArrowRight {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(10px);
+  }
+}
+
+.arrow-left-btn {
+  display: block;
+  width: 50px;
+  height: 50px;
+  position: relative;
+}
+
+/* Invertimos los bordes para que las flechas apunten hacia la derecha (>) */
+.arrow-left-btn::before,
+.arrow-left-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 20%;
+  width: 18px;
+  height: 18px;
+  border-top: 4px solid #00bfff;
+  /* Cambiado a top */
+  border-right: 4px solid #00bfff;
+  /* Cambiado a right */
+  border-left: none;
+  border-bottom: none;
+  transform: translateY(-50%) rotate(45deg);
+  transition: all 0.3s;
+}
+
+.arrow-left-btn::after {
+  right: 45%;
+}
+
+.arrow-action-wrapper-left:hover .arrow-left-btn::before,
+.arrow-action-wrapper-left:hover .arrow-left-btn::after {
+  border-color: var(--color-white);
+}
+
+/* ================================================================================
+VISTA DE NOTICIAS (SLIDE DESDE LA DERECHA)
+================================================================================ */
+.view-news {
+  display: flex;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(10px);
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+
+  /* Animación de entrada gradual */
+  transform: translateX(100%);
+  /* Fuera de la pantalla por la derecha */
+  visibility: hidden;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.6s;
+}
+
+#state-news:checked~main .view-news {
+  transform: translateX(0);
+  /* Se desliza hacia la izquierda ocupando la pantalla */
+  visibility: visible;
+}
+
+.news-content-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Grid dinámico que respeta las proporciones de las imágenes */
+.news-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  /* Aproximadamente 574px vs 278px */
+  gap: 15px;
+  max-width: 900px;
+  width: 90%;
+  list-style: none;
+}
+
+.news-item {
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+  /* Sombra negra neutra */
+  transition: transform 0.3s ease;
+  /* Eliminamos la transición de sombra */
+  cursor: pointer;
+}
+
+.news-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.news-item:hover {
+  transform: translateY(-5px);
+  /* Brillo dorado eliminado */
+}
+
+.news-item:hover img {
+  transform: scale(1.05);
+  /* Zoom interno suave */
+}
+
+/* Asignación de posiciones exactas y tamaños */
+.item-left {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  aspect-ratio: 574 / 483;
+}
+
+.item-right-top {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  aspect-ratio: 275 / 145;
+}
+
+.item-right-bottom {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  aspect-ratio: 278 / 279;
+}
+
+.btn-close-news {
+  position: static;
+  margin-top: 40px;
+  display: inline-block;
+}
+

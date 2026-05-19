@@ -1,0 +1,77 @@
+/* ================================================================================
+SISTEMA DE ESTADOS PURE CSS Y CONSERVACIÓN DE SCROLL
+================================================================================ */
+.view-home {
+  display: block;
+  height: 150vh;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Separamos la lógica para que la barra superior se deslice hacia arriba */
+body:has(input[name="app-state"]:not(#state-home):checked) .view-home,
+body:has(input[name="app-state"]:not(#state-home):checked) .official-side-nav {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+body:has(input[name="app-state"]:not(#state-home):checked) .official-top-nav {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateY(-100%) !important;
+  /* Esto hace que la barra suba y desaparezca */
+}
+
+.view-packs,
+.view-cards,
+.view-login,
+.view-register,
+.view-profile,
+.view-pokedex,
+.view-tcg-event {
+  display: none;
+  width: 100%;
+}
+
+#state-packs:checked~main .view-packs,
+#state-login:checked~main .view-login,
+#state-register:checked~main .view-register,
+#state-profile:checked~main .view-profile {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+#state-pack-a:checked~main .view-cards,
+#state-pack-b:checked~main .view-cards,
+#state-pack-c:checked~main .view-cards {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+

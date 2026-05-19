@@ -1,0 +1,62 @@
+/* ================================================================================
+FOOTER PRINCIPAL
+================================================================================ */
+.main-footer {
+  position: relative;
+  z-index: 5;
+  background-color: rgba(27, 23, 52, 0.95);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 203, 5, 0.2);
+  padding: 0.5rem 1.5rem;
+  margin-top: auto;
+}
+
+.footer-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.copyright {
+  font-size: 0.7rem;
+  color: var(--color-gray-light);
+  opacity: 0.8;
+  letter-spacing: 0.3px;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.footer-link {
+  color: var(--color-gray-light);
+  text-decoration: none;
+  font-size: 0.7rem;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+}
+
+.footer-link:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+body:has(#state-packs:checked) .main-footer,
+body:has(#state-pack-a:checked) .main-footer,
+body:has(#state-pack-b:checked) .main-footer,
+body:has(#state-pack-c:checked) .main-footer,
+body:has(#state-tcg-event:checked) .main-footer,
+body:has(#state-videojuegos:checked) .main-footer {
+  opacity: 0;
+  pointer-events: none;
+}
+

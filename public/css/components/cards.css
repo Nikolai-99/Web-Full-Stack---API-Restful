@@ -1,0 +1,474 @@
+/* ================================================================================
+SOBRES Y CARTAS
+================================================================================ */
+.pack,
+.card {
+  display: block;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.pack {
+  cursor: pointer;
+  aspect-ratio: 780 / 1429;
+  max-width: 220px;
+  width: 100%;
+}
+
+.card {
+  aspect-ratio: 780 / 1100;
+  max-width: 200px;
+  width: 100%;
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 1;
+}
+
+.pack-inner,
+.card-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+}
+
+.pack img,
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  backface-visibility: hidden;
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.pack img {
+  object-fit: fill;
+}
+
+.card-back {
+  background-image: url("/assets/cards/Carta_Reverso.png");
+  transform: rotateY(180deg);
+}
+
+.card-front {
+  background-size: cover;
+  background-position: center;
+}
+
+.pack:hover .pack-inner,
+.card-label:hover .card .card-inner {
+  transform: scale(1.03) rotateY(5deg) rotateX(2deg);
+}
+
+.pack:active .pack-inner,
+.card-label:active .card .card-inner {
+  transform: scale(0.97) rotateY(-5deg) rotateX(-2deg);
+}
+
+/* Estado de interacción 3D via JS */
+.pack.is-pressed,
+.card.is-pressed {
+  cursor: grabbing !important;
+  z-index: 100 !important;
+}
+
+.pack.is-pressed .pack-inner,
+.card.is-pressed .card .card-inner,
+.card.is-pressed .card-inner {
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8) !important;
+  transition: transform 0.1s ease-out !important;
+  /* El transform se maneja desde JS para permitir la rotación dinámica */
+}
+
+.pack.is-pressed .holo-gradient-layer {
+  opacity: 0 !important;
+}
+
+.card.is-pressed .holo-gradient-layer {
+  opacity: 1 !important;
+  transition: opacity 0.3s ease !important;
+}
+
+.holo-gradient-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  pointer-events: none;
+  mix-blend-mode: color-dodge;
+  filter: blur(15px);
+  background-size: 400% 400%;
+  background-position: 0% 50%;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+@keyframes holoNeonSweep {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.pack .holo-gradient-layer,
+.card .holo-gradient-layer {
+  background-image: none;
+  opacity: 0;
+  animation: none;
+}
+
+.view-cards .card-1 .holo-gradient-layer {
+  background-image: var(--holo-gradient-cards);
+  opacity: 1;
+  animation: holoNeonSweep 10s ease-in-out infinite;
+}
+
+#state-pack-a:checked~main .view-cards .card-1 .card-front {
+  background-image: var(--carta-a1-url);
+}
+
+#state-pack-a:checked~main .view-cards .card-2 .card-front {
+  background-image: var(--carta-a2-url);
+}
+
+#state-pack-a:checked~main .view-cards .card-3 .card-front {
+  background-image: var(--carta-a3-url);
+}
+
+#state-pack-a:checked~main .view-cards .card-4 .card-front {
+  background-image: var(--carta-a4-url);
+}
+
+#state-pack-b:checked~main .view-cards .card-1 .card-front {
+  background-image: var(--carta-b1-url);
+}
+
+#state-pack-b:checked~main .view-cards .card-2 .card-front {
+  background-image: var(--carta-b2-url);
+}
+
+#state-pack-b:checked~main .view-cards .card-3 .card-front {
+  background-image: var(--carta-b3-url);
+}
+
+#state-pack-b:checked~main .view-cards .card-4 .card-front {
+  background-image: var(--carta-b4-url);
+}
+
+#state-pack-c:checked~main .view-cards .card-1 .card-front {
+  background-image: var(--carta-c1-url);
+}
+
+#state-pack-c:checked~main .view-cards .card-2 .card-front {
+  background-image: var(--carta-c2-url);
+}
+
+#state-pack-c:checked~main .view-cards .card-3 .card-front {
+  background-image: var(--carta-c3-url);
+}
+
+#state-pack-c:checked~main .view-cards .card-4 .card-front {
+  background-image: var(--carta-c4-url);
+}
+
+/* SELECCIÓN DE CARTAS */
+body:has(input[name="card-state"]:not(#card-none):checked) .nav-return-packs {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.card-label {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Evitar que el label interfiera con el arrastre 3D cuando la carta ya está seleccionada */
+body:has(input[name="card-state"]:not(#card-none):checked) .card-label {
+  pointer-events: none;
+}
+
+body:has(input[name="card-state"]:not(#card-none):checked) .card {
+  pointer-events: auto !important;
+}
+
+.card-close-overlay {
+  display: none !important;
+  /* Desactivado por petición del usuario: solo se cierra con el botón */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 45;
+}
+
+body:has(input[name="card-state"]:not(#card-none):checked) .card-close-overlay {
+  display: block;
+}
+
+body:has(input[name="card-state"]:not(#card-none):checked) .cards-grid {
+  perspective: none;
+}
+
+body:has(input[name="card-state"]:not(#card-none):checked) .card-slot {
+  opacity: 0;
+  visibility: hidden;
+  filter: blur(8px);
+  pointer-events: none;
+  transition: all 0.5s ease;
+}
+
+body:has(#card-1-selected:checked) .slot-1,
+body:has(#card-2-selected:checked) .slot-2,
+body:has(#card-3-selected:checked) .slot-3,
+body:has(#card-4-selected:checked) .slot-4 {
+  opacity: 1 !important;
+  visibility: visible !important;
+  filter: none !important;
+  pointer-events: auto !important;
+  z-index: 60;
+}
+
+body:has(#card-1-selected:checked) .slot-1 .card,
+body:has(#card-2-selected:checked) .slot-2 .card,
+body:has(#card-3-selected:checked) .slot-3 .card,
+body:has(#card-4-selected:checked) .slot-4 .card {
+  position: fixed;
+  top: 55vh;
+  left: 35vw;
+  transform: translate(-50%, -50%) scale(1.6);
+  z-index: 60;
+}
+
+body:has(#card-1-selected:checked) .slot-1 .card .card-inner,
+body:has(#card-2-selected:checked) .slot-2 .card .card-inner,
+body:has(#card-3-selected:checked) .slot-3 .card .card-inner,
+body:has(#card-4-selected:checked) .slot-4 .card .card-inner {
+  /* Eliminado transform: none !important para permitir interacción JS */
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+  cursor: grab;
+  pointer-events: auto !important;
+  z-index: 100;
+  /* Asegura que esté sobre todo lo demás para la interacción */
+}
+
+.card-details {
+  position: fixed;
+  top: 55vh;
+  left: 52vw;
+  transform: translateY(-50%) translateX(60px);
+  width: 80%;
+  max-width: 450px;
+  background: rgba(27, 23, 52, 0.85);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 203, 5, 0.4);
+  padding: 2.5rem;
+  border-radius: 12px;
+  color: var(--color-white);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 50;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+.card-details h2 {
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  font-size: var(--font-size-lg);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(255, 203, 5, 0.3);
+  padding-bottom: 0.5rem;
+}
+
+.card-details p {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-light);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.close-details-btn {
+  display: inline-block;
+  padding: 0.6rem 1.5rem;
+  background-color: transparent;
+  color: var(--color-white);
+  border: 1px solid var(--color-primary);
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.close-details-btn:hover {
+  background-color: var(--color-primary);
+  color: var(--color-dark);
+  box-shadow: 0 0 15px rgba(255, 203, 5, 0.5);
+}
+
+body:has(#card-1-selected:checked) .slot-1 .card-details,
+body:has(#card-2-selected:checked) .slot-2 .card-details,
+body:has(#card-3-selected:checked) .slot-3 .card-details,
+body:has(#card-4-selected:checked) .slot-4 .card-details {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* ================================================================================
+BOTÓN DE FAVORITOS (CORAZÓN)
+================================================================================ */
+
+.card-details h2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+}
+
+.btn-fav {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-fav:hover {
+  transform: scale(1.2);
+}
+
+.btn-fav:active {
+  transform: scale(0.9);
+}
+
+.fav-icon {
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: var(--color-white);
+  stroke-width: 2;
+  transition: all 0.4s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* Estado Activo: Corazón Rojo */
+.btn-fav.is-favorite .fav-icon {
+  fill: #ff4d4d;
+  stroke: #ff4d4d;
+  filter: drop-shadow(0 0 8px rgba(255, 77, 77, 0.6));
+  animation: heartBeat 0.6s ease-out;
+}
+
+@keyframes heartBeat {
+  0% {
+    transform: scale(1);
+  }
+
+  25% {
+    transform: scale(1.3);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  75% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ================================================================================
+CONTROL DE DESCRIPCIONES DE CARTAS SEGÚN EL SOBRE
+================================================================================ */
+
+.info-pack-a,
+.info-pack-b,
+.info-pack-c {
+  display: none;
+}
+
+#state-pack-a:checked~main .info-pack-a {
+  display: block;
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+#state-pack-b:checked~main .info-pack-b {
+  display: block;
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+#state-pack-c:checked~main .info-pack-c {
+  display: block;
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* ================================================================================
+AJUSTES HOLOGRAFICOS DE CARTAS
+================================================================================ 
+*/
+
+@media (prefers-reduced-motion: reduce) {
+
+  /* Desactivar todas las animaciones repetitivas */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Excepciones: Mantener desvanecimientos pero quitar movimiento en elementos clave */
+  .view-packs,
+  .view-cards,
+  .view-news,
+  .footer-modal-box {
+    transition: opacity 0.3s ease !important;
+    transform: none !important;
+  }
+
+  /* Detener los rebotes y barridos de neón */
+  .arrow-action-wrapper,
+  .arrow-action-wrapper-left,
+  .view-cards .card-1 .holo-gradient-layer {
+    animation: none !important;
+  }
+
+  /* Evitar que las cartas hagan el efecto 3D al hacer hover */
+  .pack:hover .pack-inner,
+  .card-label:hover .card .card-inner {
+    transform: none !important;
+  }
+}
+

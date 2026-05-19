@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="public/css/styles.css">
     <!-- CSS del juego React (aislado con prefijos de clase propios) -->
     <link rel="stylesheet" href="web_mini_game/pokemon-battle/dist/assets/game.css">
+    <!-- marked.js — Parser de Markdown a HTML (para respuestas del asistente IA) -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js"></script>
+    <!-- DOMPurify — Sanitizador XSS (elimina HTML peligroso del output del modelo) -->
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
     <script type="module" src="public/js/main.js"></script>
 </head>
 
@@ -84,6 +88,18 @@
                 <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
             </svg>
         </label>
+        <!-- Botón PokéAssist para móvil/tablet (aparece en la barra lateral) -->
+        <button
+            class="btn-pokeassist-toggle"
+            aria-label="Abrir asistente PokéAssist"
+            title="¿Tienes dudas? ¡Pregúntame!"
+        >
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                <path d="M9.5 9C9.5 7.619 10.619 6.5 12 6.5C13.381 6.5 14.5 7.619 14.5 9C14.5 10.381 13.381 11.5 12 11.5V13.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="12" cy="16.5" r="1" fill="currentColor"/>
+            </svg>
+        </button>
     </aside>
 
     <span class="page-background-container" aria-hidden="true"></span>

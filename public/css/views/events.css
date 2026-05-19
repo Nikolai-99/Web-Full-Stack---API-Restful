@@ -1,0 +1,109 @@
+/* ================================================================================
+   SECCIÓN: TCG EVENT SHOWDOWN 2025
+================================================================================ */
+.view-tcg-event {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100vw;
+  height: 100vh;
+  background-image: var(--background-fixed-url);
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  background-blend-mode: overlay;
+  overflow-y: auto;
+  z-index: 40;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  animation: fadeInPokedex 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+body:has(#state-tcg-event:checked) .view-tcg-event {
+  display: flex;
+}
+
+.tcg-event-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  padding-bottom: 100px;
+  position: relative;
+}
+
+.tcg-event-banner {
+  width: 100%;
+  margin-top: 60px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.tcg-event-banner img {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+}
+
+.tcg-event-description {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border-left: 4px solid var(--color-primary);
+  border-right: 4px solid var(--color-primary);
+  padding: 3rem;
+  border-radius: 12px;
+  margin-bottom: 40px;
+  text-align: center;
+  max-width: 900px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.tcg-event-description h2 {
+  font-family: 'Press Start 2P', monospace, sans-serif;
+  font-size: 1.8rem;
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  letter-spacing: 1px;
+}
+
+.tcg-event-description p {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: var(--color-white);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.tcg-event-schedule {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.tcg-event-schedule img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s ease;
+}
+
+.tcg-event-schedule img:hover {
+  transform: scale(1.02);
+}
+
+.view-tcg-event .close-btn {
+  top: 20px;
+  right: 30px;
+  position: fixed;
+}
+

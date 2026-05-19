@@ -1,0 +1,79 @@
+/*
+================================================================================
+VARIABLES CSS PARA ASSETS Y COLORES PUROS NEÓN
+================================================================================
+*/
+:root {
+  --background-fixed-url: url("/assets/asset-background.png");
+  --color-primary: #ffcb05;
+  --color-dark: #1b1734;
+  --color-white: #ffffff;
+  --color-gray-light: #e0e0e0;
+  --color-gray-dark: #2a2538;
+
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+
+  --sobre-a-url: url("/assets/booster_pks/Sobre_A.png");
+  --sobre-b-url: url("/assets/booster_pks/Sobre_B.png");
+  --sobre-c-url: url("/assets/booster_pks/Sobre_C.png");
+
+  --carta-a1-url: url("/assets/cards/Carta_A1.png");
+  --carta-a2-url: url("/assets/cards/Carta_A2.png");
+  --carta-a3-url: url("/assets/cards/Carta_A3.png");
+  --carta-a4-url: url("/assets/cards/Carta_A4.png");
+
+  --carta-b1-url: url("/assets/cards/Carta_B1.png");
+  --carta-b2-url: url("/assets/cards/Carta_B2.png");
+  --carta-b3-url: url("/assets/cards/Carta_B3.png");
+  --carta-b4-url: url("/assets/cards/Carta_B4.png");
+
+  --carta-c1-url: url("/assets/cards/Carta_C1.png");
+  --carta-c2-url: url("/assets/cards/Carta_C2.png");
+  --carta-c3-url: url("/assets/cards/Carta_C3.png");
+  --carta-c4-url: url("/assets/cards/Carta_C4.png");
+
+  --neon-green-rgb: 57, 255, 20;
+  --neon-purple-rgb: 188, 19, 254;
+
+  --holo-gradient-cards: linear-gradient(110deg,
+      rgba(var(--neon-green-rgb), 0.45) 0%,
+      rgba(var(--neon-purple-rgb), 0.45) 25%,
+      rgba(var(--neon-green-rgb), 0.45) 50%,
+      rgba(var(--neon-purple-rgb), 0.45) 75%,
+      rgba(var(--neon-green-rgb), 0.45) 100%);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  font-weight: 400;
+  overflow-x: hidden;
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+body:has(input[name="app-state"]:not(#state-home):checked),
+body:has(input[name="footer-state"]:not(#footer-none):checked) {
+  overflow: hidden;
+}
+

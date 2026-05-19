@@ -1,0 +1,181 @@
+/* ================================================================================
+COMPONENTES OFICIALES (TOP NAV & SIDEBAR)
+================================================================================ */
+
+.official-top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--color-white);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  /* Añadimos transform a la transición para que suba y baje suavemente */
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  animation: fadeOutNavOnScroll linear forwards;
+  animation-timeline: scroll(root);
+}
+
+@keyframes fadeOutNavOnScroll {
+
+  0%,
+  2% {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  15%,
+  100% {
+    opacity: 0;
+    transform: translateY(-100%);
+    pointer-events: none;
+    visibility: hidden;
+  }
+}
+
+.nav-logo-link {
+  position: absolute;
+  left: 2vw;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+}
+
+.nav-logo {
+  height: 45px;
+  width: auto;
+  transition: transform 0.3s ease;
+}
+
+.nav-logo:hover {
+  transform: scale(1.05);
+}
+
+.menu-toggle-checkbox,
+.menu-toggle-label {
+  display: none;
+}
+
+.main-menu {
+  display: flex;
+  list-style: none;
+  height: 75px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 150px;
+  height: 100%;
+  padding: 0 15px;
+  text-decoration: none;
+  color: #4a4a4a;
+  font-weight: 700;
+  font-size: 0.8rem;
+  border-bottom: 6px solid transparent;
+  border-right: 1px solid #e0e0e0;
+  transition: all 0.2s ease;
+  background-color: var(--color-white);
+}
+
+.main-menu li:first-child .menu-item {
+  border-left: 1px solid #e0e0e0;
+}
+
+.menu-item:hover {
+  background-color: #f2f2f2;
+  color: var(--color-dark);
+}
+
+.menu-item.inicio {
+  border-bottom-color: #919191;
+}
+
+.menu-item.pokedex {
+  border-bottom-color: #e3350d;
+}
+
+.menu-item.videojuegos {
+  border-bottom-color: #e67e22;
+}
+
+.menu-item.eventos {
+  border-bottom-color: #3498db;
+}
+
+.menu-item.noticias {
+  border-bottom-color: #1b53ba;
+}
+
+.official-side-nav {
+  position: fixed;
+  top: 15vh;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  transition: opacity 0.3s ease;
+}
+
+body:has(#menu-toggle:checked) .official-side-nav {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.btn-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 110px;
+  background-color: #4dad5b;
+  color: var(--color-white);
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 10px 5px;
+  gap: 8px;
+  transition: background-color 0.2s;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.btn-login:hover {
+  background-color: #3e8e49;
+}
+
+.btn-login.logged-in {
+  background-color: #3498db;
+  border-left: 4px solid #1b53ba;
+}
+
+.btn-login.logged-in:hover {
+  background-color: #2980b9;
+  filter: brightness(1.1);
+}
+
+.btn-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background-color: #30a7d7;
+  color: var(--color-white);
+  text-decoration: none;
+  transition: background-color 0.2s;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn-search:hover {
+  background-color: #268bb5;
+}
+

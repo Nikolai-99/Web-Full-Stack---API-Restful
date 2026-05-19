@@ -38,7 +38,9 @@ function App() {
         try {
           const user = JSON.parse(auth);
           setUserId(user.id || null);
-        } catch(e) {}
+        } catch {
+          // Ignorar error de parseo
+        }
       } else {
         setHasSession(false);
         setUserId(null);
@@ -87,8 +89,10 @@ function App() {
 
   useEffect(() => {
     if (hasSession && !player) {
-      startGame();
+      // Evitamos llamar a setState sincrónicamente dentro del efecto usando setTimeout
+      setTimeout(startGame, 0);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasSession]);
 
   const handleMoveSelect = async (move: Move) => {

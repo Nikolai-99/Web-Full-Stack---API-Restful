@@ -1,0 +1,262 @@
+/* ================================================================================
+   NUEVOS ESTILOS DEL HERO (Layout 2 Columnas)
+================================================================================ */
+.hero-content-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15vw;
+  z-index: 3;
+  animation: fadeOutHeroOnScroll linear forwards;
+  animation-timeline: scroll(root);
+  padding: 0 5%;
+  transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ================================================================================
+   ESTILOS Y ANIMACIÓN DEL LOGO PRINCIPAL (Aparece al bajar)
+================================================================================ */
+.hero-logo-wrapper {
+  position: fixed;
+  top: 15vh;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 3;
+  opacity: 0;
+  animation: fadeLogoInOnScroll linear forwards;
+  animation-timeline: scroll(root);
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-logo {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  display: block;
+}
+
+@keyframes fadeLogoInOnScroll {
+
+  0%,
+  40% {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+  }
+
+  60%,
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+
+@keyframes fadeOutHeroOnScroll {
+
+  0%,
+  15% {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  70%,
+  100% {
+    opacity: 0;
+    transform: translateY(-40px);
+    pointer-events: none;
+  }
+}
+
+.hero-left-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.hero-logo-caja {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  display: block;
+  opacity: 0;
+}
+
+#state-home:checked~main .hero-logo-caja {
+  animation: fadeInImage 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: 0.2s;
+}
+
+.hero-badge {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  display: block;
+  opacity: 0;
+}
+
+#state-home:checked~main .hero-badge {
+  animation: fadeInImage 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: 0.4s;
+}
+
+.hero-right-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-box-floating {
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  opacity: 0;
+}
+
+#state-home:checked~main .hero-box-floating {
+  animation: fadeInImage 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeInImage {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-box-floating:hover {
+  transform: scale(1.05) translateY(-5px);
+  filter: drop-shadow(0 10px 15px rgba(255, 203, 5, 0.4));
+}
+
+@keyframes floatSlowBox {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(20px);
+  }
+}
+
+.arrow-down-container {
+  position: fixed;
+  bottom: 8vh;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 4;
+  opacity: 0;
+  animation: fadeArrowOnScroll linear forwards;
+  animation-timeline: scroll(root);
+}
+
+@keyframes fadeOnScroll {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  30% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeArrowOnScroll {
+
+  0%,
+  80% {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  95%,
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.arrow-action-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  animation: bounceArrow 2s infinite ease-in-out;
+  gap: 5px;
+}
+
+.ver-sobres-img {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+}
+
+@keyframes bounceArrow {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+.arrow-down-btn {
+  display: block;
+  width: 60px;
+  height: 60px;
+  position: relative;
+}
+
+.arrow-down-btn::before,
+.arrow-down-btn::after {
+  content: "";
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  border-right: 4px solid #00bfff;
+  border-bottom: 4px solid #00bfff;
+  transform: translateX(-50%) rotate(45deg);
+  transition: all 0.3s;
+}
+
+.arrow-down-btn::after {
+  top: 45%;
+}
+
+.arrow-action-wrapper:hover .arrow-down-btn::before,
+.arrow-action-wrapper:hover .arrow-down-btn::after {
+  border-color: var(--color-white);
+}
+
