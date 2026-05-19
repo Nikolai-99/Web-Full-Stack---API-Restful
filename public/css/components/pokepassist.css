@@ -3,6 +3,14 @@
    Botón FAB flotante + Panel de Chat Premium
 ================================================================================ */
 
+/* ── Control de Visibilidad por Estado (Solo en Home) ── */
+body:has(#state-home:not(:checked)) .pokeassist-fab,
+body:has(#state-home:not(:checked)) .btn-pokeassist-toggle,
+body:has(#state-home:not(:checked)) .pokeassist-panel,
+body:has(#state-home:not(:checked)) .pokeassist-overlay {
+  display: none !important;
+}
+
 /* ── Botón FAB flotante ── */
 .pokeassist-fab {
   position: fixed;

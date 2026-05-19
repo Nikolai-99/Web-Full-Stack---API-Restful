@@ -82,6 +82,16 @@ export function initPokeAssist() {
     if (e.key === "Escape" && isOpen) closePanel();
   });
 
+  // ─── Cerrar automáticamente al salir de la vista Home ──
+  const appStateRadios = document.querySelectorAll('input[name="app-state"]');
+  appStateRadios.forEach(radio => {
+    radio.addEventListener("change", (e) => {
+      if (e.target.id !== "state-home" && isOpen) {
+        closePanel();
+      }
+    });
+  });
+
   // ─── Contador de caracteres en el textarea ──
   input?.addEventListener("input", () => {
     const len = input.value.length;
