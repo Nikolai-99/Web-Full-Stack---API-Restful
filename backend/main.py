@@ -602,5 +602,10 @@ def get_chat_logs(limit: int = 50, db: Session = Depends(get_db)):
 # Montaje final de archivos estáticos
 # ──────────────────────────────────────────
 # Esto debe ir AL FINAL para no interferir con los endpoints de la API.
-# Permite que archivos como app.js y styles.css sean accesibles directamente.
-app.mount("/", StaticFiles(directory=root_dir), name="main_static")
+# IMPORTANTE: Para evitar que el archivo sensible .env o la base de datos sqlite
+# sean accesibles de forma pública en la red, montamos únicamente las carpetas
+# de assets y código del frontend en lugar de toda la raíz del proyecto.
+app.mount("/public", StaticFiles(directory=os.path.join(root_dir, "public")), name="public_static")
+app.mount("/assets", StaticFiles(directory=os.path.join(root_dir, "assets")), name="assets_static")
+app.mount("/web_mini_game", StaticFiles(directory=os.path.join(root_dir, "web_mini_game")), name="web_mini_game_static")
+
