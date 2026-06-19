@@ -3,6 +3,35 @@
 **Pokémon TCG Web Experience** es una aplicación web interactiva de alto rendimiento que demuestra patrones avanzados de UI/UX, gestión de estado y renderizado 3D. Originalmente concebida como una prueba de concepto "Zero-JS", el proyecto ha evolucionado hacia una arquitectura **Full-Stack** moderna, integrando una lógica de cliente robusta y un backend potente.
 
 ---
+
+## 📸 Screenshots
+
+### Vista Principal
+
+![Vista principal del sitio](screenshot/preview_inicio.png)
+
+### Sobres y Cartas 3D Interactivos
+
+![Vista de sobres 3D](screenshot/preview_sobres.png)
+
+![Interacción con carta holográfica](screenshot/preview_sobres_2.png)
+
+### Asistente IA — PokéAssist
+
+![Panel de PokéAssist en acción](screenshot/preview_asistente_IA.png)
+
+### API REST — Swagger UI
+
+![Documentación Swagger de la API](screenshot/Swagger_API.png)
+
+### Diseño Responsivo (iPhone SE)
+
+| Inicio | Inicio 2 | Sobre | Carta | Carta 2 |
+|--------|----------|-------|-------|--------|
+| ![](screenshot/Responsive%20(iPhone%20SE)/preview_inicio.png) | ![](screenshot/Responsive%20(iPhone%20SE)/preview_inicio_2.png) | ![](screenshot/Responsive%20(iPhone%20SE)/preview_sobre.png) | ![](screenshot/Responsive%20(iPhone%20SE)/preview_carta.png) | ![](screenshot/Responsive%20(iPhone%20SE)/preview_carta_2.png) |
+
+---
+
 ### Respuesta a las Preguntas Clave del Proyecto
 
 **1. ¿Qué problema resuelve la aplicación?** 
@@ -339,36 +368,6 @@ Al iniciarse con éxito, FastAPI montará automáticamente el directorio como re
 - [ ] Agregar **notificaciones push** (Web Notifications API) cuando hay nuevos eventos TCG.
 - [ ] Mejorar la **accesibilidad** con atributos `aria-label`, `role` y soporte completo para navegación por teclado en modales.
 - [ ] Implementar **modo oscuro/claro** configurable por el usuario con persistencia en perfil.
-
----
-
-## 📸 Screenshots
-
-### Vista Principal
-
-![Vista principal del sitio](screenshot/preview_inicio.png)
-
-### Sobres y Cartas 3D Interactivos
-
-![Vista de sobres 3D](screenshot/preview_sobres.png)
-
-![Interacción con carta holográfica](screenshot/preview_sobres_2.png)
-
-### Asistente IA — PokéAssist
-
-![Panel de PokéAssist en acción](screenshot/preview_asistente_IA.png)
-
-### API REST — Swagger UI
-
-![Documentación Swagger de la API](screenshot/Swagger_API.png)
-
-### Diseño Responsivo (iPhone SE)
-
-| Inicio | Inicio 2 | Sobre | Carta | Carta 2 |
-|--------|----------|-------|-------|--------|
-| ![](screenshot/Responsive%20(iPhone%20SE)/preview_inicio.png) | ![](screenshot/Responsive%20(iPhone%20SE)/preview_inicio_2.png) | ![](screenshot/Responsive%20(iPhone%20SE)/preview_sobre.png) | ![](screenshot/Responsive%20(iPhone%20SE)/preview_carta.png) | ![](screenshot/Responsive%20(iPhone%20SE)/preview_carta_2.png) |
-
----
 
 ## 📄 Licencia y Descargo de Responsabilidad
 Aviso legal
