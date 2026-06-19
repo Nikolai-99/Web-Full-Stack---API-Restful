@@ -6,15 +6,19 @@
 ### Respuesta a las Preguntas Clave del Proyecto
 
 **1. ¿Qué problema resuelve la aplicación?** 
+
 Resuelve la necesidad de ofrecer una plataforma unificada e interactiva para los aficionados de Pokémon TCG, permitiéndoles explorar sobres y cartas de manera interactiva en 3D, llevar registro de sus cartas favoritas, interactuar con la comunidad, y resolver reglas complejas del juego al instante mediante un Asistente Inteligente (PokéAssist) potenciado por la IA de Gemini.
 
 **2. ¿Qué datos guarda y por qué son importantes?** 
+
 Guarda información de **Usuarios** (credenciales encriptadas para seguridad), **Cartas** (catálogo central), **Favoritos** (relación que personaliza la experiencia del usuario), **Estadísticas de Juego** (victorias en el mini-juego para el Leaderboard) y **Logs del Chat IA** (para auditoría y análisis de uso por parte del administrador). Son importantes para retener al usuario y ofrecer una experiencia persistente.
 
 **3. ¿Qué operaciones permite realizar el usuario?** 
+
 El usuario puede: Registrarse, iniciar sesión, actualizar su perfil, navegar por la Pokédex regional ordenando los resultados, interactuar visualmente en 3D con sobres de cartas, añadir cartas a su colección de Favoritos, jugar a un mini-juego de batallas clásico (y guardar victorias), y chatear con la IA para consultar cualquier duda.
 
 **4. ¿Qué parte del sistema usa IA o automatización?** 
+
 El sistema utiliza IA en su componente **"PokéAssist"** (el botón flotante de chat). Este componente procesa las consultas del usuario enviándolas al backend, el cual estructura la petición añadiendo un _System Prompt_ restrictivo y envía el historial reciente al modelo **Gemini 2.5 Flash**, devolviendo una respuesta formatada y contextual al usuario.
 
 **5. ¿Qué validaciones y defensas mínimas protegen el sistema?**
