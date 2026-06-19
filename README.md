@@ -5,13 +5,17 @@
 ---
 ### Respuesta a las Preguntas Clave del Proyecto
 
-**1. ¿Qué problema resuelve la aplicación?** Resuelve la necesidad de ofrecer una plataforma unificada e interactiva para los aficionados de Pokémon TCG, permitiéndoles explorar sobres y cartas de manera interactiva en 3D, llevar registro de sus cartas favoritas, interactuar con la comunidad, y resolver reglas complejas del juego al instante mediante un Asistente Inteligente (PokéAssist) potenciado por la IA de Gemini.
+**1. ¿Qué problema resuelve la aplicación?** 
+Resuelve la necesidad de ofrecer una plataforma unificada e interactiva para los aficionados de Pokémon TCG, permitiéndoles explorar sobres y cartas de manera interactiva en 3D, llevar registro de sus cartas favoritas, interactuar con la comunidad, y resolver reglas complejas del juego al instante mediante un Asistente Inteligente (PokéAssist) potenciado por la IA de Gemini.
 
-**2. ¿Qué datos guarda y por qué son importantes?** Guarda información de **Usuarios** (credenciales encriptadas para seguridad), **Cartas** (catálogo central), **Favoritos** (relación que personaliza la experiencia del usuario), **Estadísticas de Juego** (victorias en el mini-juego para el Leaderboard) y **Logs del Chat IA** (para auditoría y análisis de uso por parte del administrador). Son importantes para retener al usuario y ofrecer una experiencia persistente.
+**2. ¿Qué datos guarda y por qué son importantes?** 
+Guarda información de **Usuarios** (credenciales encriptadas para seguridad), **Cartas** (catálogo central), **Favoritos** (relación que personaliza la experiencia del usuario), **Estadísticas de Juego** (victorias en el mini-juego para el Leaderboard) y **Logs del Chat IA** (para auditoría y análisis de uso por parte del administrador). Son importantes para retener al usuario y ofrecer una experiencia persistente.
 
-**3. ¿Qué operaciones permite realizar el usuario?** El usuario puede: Registrarse, iniciar sesión, actualizar su perfil, navegar por la Pokédex regional ordenando los resultados, interactuar visualmente en 3D con sobres de cartas, añadir cartas a su colección de Favoritos, jugar a un mini-juego de batallas clásico (y guardar victorias), y chatear con la IA para consultar cualquier duda.
+**3. ¿Qué operaciones permite realizar el usuario?** 
+El usuario puede: Registrarse, iniciar sesión, actualizar su perfil, navegar por la Pokédex regional ordenando los resultados, interactuar visualmente en 3D con sobres de cartas, añadir cartas a su colección de Favoritos, jugar a un mini-juego de batallas clásico (y guardar victorias), y chatear con la IA para consultar cualquier duda.
 
-**4. ¿Qué parte del sistema usa IA o automatización?** El sistema utiliza IA en su componente **"PokéAssist"** (el botón flotante de chat). Este componente procesa las consultas del usuario enviándolas al backend, el cual estructura la petición añadiendo un _System Prompt_ restrictivo y envía el historial reciente al modelo **Gemini 2.5 Flash**, devolviendo una respuesta formatada y contextual al usuario.
+**4. ¿Qué parte del sistema usa IA o automatización?** 
+El sistema utiliza IA en su componente **"PokéAssist"** (el botón flotante de chat). Este componente procesa las consultas del usuario enviándolas al backend, el cual estructura la petición añadiendo un _System Prompt_ restrictivo y envía el historial reciente al modelo **Gemini 2.5 Flash**, devolviendo una respuesta formatada y contextual al usuario.
 
 **5. ¿Qué validaciones y defensas mínimas protegen el sistema?**
 
@@ -334,13 +338,11 @@ Al iniciarse con éxito, FastAPI montará automáticamente el directorio como re
 
 ---
 
-## 📸 Evidencia de Funcionamiento
+## 📸 Screenshots
 
 ### Vista Principal
 
 ![Vista principal del sitio](screenshot/preview_inicio.png)
-
-![Vista principal — sección inferior](screenshot/preview_inicio_2.png)
 
 ### Sobres y Cartas 3D Interactivos
 
@@ -356,10 +358,6 @@ Al iniciarse con éxito, FastAPI montará automáticamente el directorio como re
 
 ![Documentación Swagger de la API](screenshot/Swagger_API.png)
 
-### Flujo de Despliegue
-
-![Flujo de despliegue del servidor](screenshot/flujo_despliegue.png)
-
 ### Diseño Responsivo (iPhone SE)
 
 | Inicio | Inicio 2 | Sobre | Carta | Carta 2 |
@@ -369,4 +367,10 @@ Al iniciarse con éxito, FastAPI montará automáticamente el directorio como re
 ---
 
 ## 📄 Licencia y Descargo de Responsabilidad
-Este es un proyecto de ingeniería conceptual y de código abierto creado únicamente con fines educativos. © 2026 Pokémon. © 1995–2026 Nintendo / Creatures Inc. / GAME FREAK inc.
+Aviso legal
+
+Este proyecto es una iniciativa de ingeniería conceptual y software de código abierto desarrollada exclusivamente con fines educativos, de investigación y demostración técnica.
+
+Pokémon y todas las marcas, nombres, personajes, imágenes y demás elementos relacionados son propiedad de sus respectivos titulares. Este proyecto no está afiliado, respaldado ni patrocinado por Nintendo, GAME FREAK, Creatures Inc. ni por The Pokémon Company.
+
+© Pokémon. © Nintendo / Creatures Inc. / GAME FREAK inc. Todos los derechos reservados.
