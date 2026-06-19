@@ -358,7 +358,7 @@ Al iniciarse con éxito, FastAPI montará automáticamente el directorio como re
 - [ ] Mover el código de administrador a una variable de entorno `ADMIN_SECRET_CODE` en escenarios de producción real.
 
 #### Funcionalidades del producto
-- [ ] **Pokédex dinámica**: migrar los datos de Pokémon estaticos en html a la base de datos con un endpoint de consulta y filtros por tipo, generación y nombre.
+- [ ] **Pokédex dinámica**: migrar los datos de Pokémon estáticos a la base de datos con un endpoint de consulta y filtros por tipo, generación y nombre.
 - [ ] **Historial de chat persistente**: cargar el historial de conversaciones de PokéAssist desde la base de datos al iniciar sesión.
 - [ ] **Sistema de logros**: otorgar badges o insignias según el número de victorias en el mini-juego y cartas en la colección.
 - [ ] **Panel admin completo**: agregar gestión de cartas (CRUD) y moderación de comentarios desde el dashboard de administración.
