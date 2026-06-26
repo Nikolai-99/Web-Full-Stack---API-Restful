@@ -1,4 +1,4 @@
-# Pokémon TCG Web Experience: Full-Stack Integration
+# Web Full-Stack, API RESTful & Swagger
 
 **Pokémon TCG Web Experience** es una aplicación web interactiva de alto rendimiento que demuestra patrones avanzados de UI/UX, gestión de estado y renderizado 3D. Originalmente concebida como una prueba de concepto "Zero-JS", el proyecto ha evolucionado hacia una arquitectura **Full-Stack** moderna, integrando una lógica de cliente robusta y un backend potente.
 
