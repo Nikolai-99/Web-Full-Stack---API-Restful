@@ -2,10 +2,6 @@
 
 **Pokémon TCG Web Experience** es una aplicación web interactiva de alto rendimiento que demuestra patrones avanzados de UI/UX, gestión de estado y renderizado 3D. Originalmente concebida como una prueba de concepto "Zero-JS", el proyecto ha evolucionado hacia una arquitectura **Full-Stack** moderna, integrando una lógica de cliente robusta y un backend potente.
 
----
-
-## 📸 Screenshots
-
 ### Vista Principal
 
 ![Vista principal del sitio](screenshot/preview_inicio.png)
@@ -16,21 +12,6 @@
 
 ![Interacción con carta holográfica](screenshot/preview_sobres_2.png)
 
-### Asistente IA — PokéAssist
-
-![Panel de PokéAssist en acción](screenshot/preview_asistente_IA.png)
-
-### API REST — Swagger UI
-
-![Documentación Swagger de la API](screenshot/Swagger_API.png)
-
-### Diseño Responsivo (iPhone SE)
-
-| Inicio | Inicio 2 | Sobre | Carta | Carta 2 |
-|--------|----------|-------|-------|--------|
-| ![](screenshot/Responsive%20(iPhone%20SE)/preview_inicio.png) | ![](screenshot/Responsive%20(iPhone%20SE)/preview_inicio_2.png) | ![](screenshot/Responsive%20(iPhone%20SE)/preview_sobre.png) | ![](screenshot/Responsive%20(iPhone%20SE)/preview_carta.png) | ![](screenshot/Responsive%20(iPhone%20SE)/preview_carta_2.png) |
-
----
 
 ### Respuesta a las Preguntas Clave del Proyecto
 
@@ -257,6 +238,7 @@ PokéAssist no es un adorno: está conectado directamente al propósito del siti
 - Mantener conversación con historial de contexto para respuestas coherentes en múltiples turnos.
 - Registrar cada conversación en la base de datos para auditoría del administrador.
 
+
 **Flujo técnico completo:**
 ```
 Usuario escribe en el chat
@@ -333,6 +315,26 @@ Al iniciarse con éxito, FastAPI montará automáticamente el directorio como re
 *(Nota: Si deseas modificar el código fuente del Mini-Juego en React, deberás ingresar a `web_mini_game/pokemon-battle` y ejecutar `npm run build` para que Vite actualice los activos que sirve FastAPI).*
 
 ---
+
+## 📸 Screenshots
+
+### Asistente IA — PokéAssist
+
+![Panel de PokéAssist en acción](screenshot/preview_asistente_IA.png)
+
+### API REST — Swagger UI
+
+![Documentación Swagger de la API](screenshot/Swagger_API.png)
+
+### Diseño Responsivo (iPhone SE)
+
+| Inicio | Inicio 2 | Sobre | Carta | Carta 2 |
+|--------|----------|-------|-------|--------|
+| ![](screenshot/Responsive%20(iPhone%20SE)/preview_inicio.png) | ![](screenshot/Responsive%20(iPhone%20SE)/preview_inicio_2.png) | ![](screenshot/Responsive%20(iPhone%20SE)/preview_sobre.png) | ![](screenshot/Responsive%20(iPhone%20SE)/preview_carta.png) | ![](screenshot/Responsive%20(iPhone%20SE)/preview_carta_2.png) |
+
+---
+
+
 
 ## ⚠️ Limitaciones conocidas y mejoras futuras
 
